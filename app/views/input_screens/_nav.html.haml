@@ -1,0 +1,11 @@
+%ul.pager
+  - if !@previous_input_screen.nil?
+    %li.previous
+      %a.navigation-button{href:'#', 'data-input-screen-id' => @previous_input_screen.nil? ? 'none' : @previous_input_screen.id , 'data-round-id' => @round.id}
+        %span &larr;
+        = @previous_input_screen.name
+  - if !@next_input_screen.nil?
+    %li.next
+      %a.navigation-button{href:'#' , 'data-input-screen-id' => @next_input_screen.nil? ? 'none' : @next_input_screen.id , 'data-round-id' => @round.id}
+        = @next_input_screen.name
+        %span &rarr;

@@ -1,0 +1,24 @@
+.page-header
+  = link_to new_simulation_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Simulation
+  %h1 Listing simulations
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Number of rounds
+        %th
+        %th
+        %th
+
+    %tbody
+      - @simulations.each do |simulation|
+        %tr
+          %td= simulation.name
+          %td= simulation.number_of_rounds
+          %td= link_to 'Show', simulation
+          %td= link_to 'Edit', edit_simulation_path(simulation)
+          %td= link_to 'Destroy', simulation, data: { confirm: 'Are you sure?' }, method: :delete

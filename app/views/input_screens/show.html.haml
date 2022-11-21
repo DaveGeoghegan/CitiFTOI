@@ -1,0 +1,14 @@
+.page-header
+  = link_to input_screens_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_input_screen_path(@input_screen), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show input_screen
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @input_screen.name
+  %dt Navigation label:
+  %dd= @input_screen.navigation_label

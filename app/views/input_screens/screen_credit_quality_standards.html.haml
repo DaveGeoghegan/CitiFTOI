@@ -1,0 +1,102 @@
+.container-fluid
+  .screen-title
+    Credit Quality Standards Decision Entry
+  .jumbotron.screen-instructions
+    Set the credit quality standards for your bank. As your credit quality becomes more conservative the quality of your loan portfolio will improve, but your loan growth will slow. Conversely, as your credit quality becomes more liberal the quality of your loan portfolio will fall, but your loan growth will increase.
+    When complete, click the "Save Decisions" button to save your work before continuing.
+  %table.table.input-screen-table.table-hover
+    %thead
+      %td.col-md-3
+        Global Consumer Banking
+      %td.col-md-4
+        US
+      %td.col-md-1.spacer
+
+      %td.col-md-4
+        International
+
+    %tr
+      %td.input-screen-label
+        Retail Banking
+      %td.editable-slider.no-border{:id => 'f9' , :input_item_id => 'input_item_9'}
+        %input.slider.slider-input{"data-slider-id" => 1 , "data-slider-min" => 0, "data-slider-max" => 4 , "data-slider-step" => 1 , "data-slider-value" =>  get_value_for_input_item('input_item_9',false) ,:input_item_id => 'input_item_9'   }
+        %span.slider-label
+          %span{:id => "slider1Value"}
+            = get_label_for_slider_input_item('input_item_9')
+      %td.no-border
+
+      %td.no-border.editable-slider{:id => 'f10' , :input_item_id => 'input_item_10'}
+        %input.slider.slider-input{"data-slider-id" => 2 , "data-slider-min" => 0, "data-slider-max" => 4 , "data-slider-step" => 1 , "data-slider-value" =>  get_value_for_input_item('input_item_10',false) ,:input_item_id => 'input_item_10'  }
+        %span.slider-label
+          %span{:id => "slider2Value"}
+            = get_label_for_slider_input_item('input_item_10')
+      %td.no-border
+      %td.no-border
+
+    %tr
+      %td.input-screen-label
+        Cards
+      %td.editable-slider.no-border{:id => 'f11' , :input_item_id => 'input_item_11'}
+        %input.slider.slider-input{"data-slider-id" => 3 , "data-slider-min" => 0, "data-slider-max" => 4 , "data-slider-step" => 1 , "data-slider-value" =>  get_value_for_input_item('input_item_11',false)  ,:input_item_id => 'input_item_11'  }
+        %span.slider-label
+          %span{:id => "slider3Value"}
+            = get_label_for_slider_input_item('input_item_11')
+      %td.no-border
+
+      %td.no-border.editable-slider{:id => 'f12' , :input_item_id => 'input_item_12'}
+        %input.slider.slider-input{"data-slider-id" => 4 , "data-slider-min" => 0, "data-slider-max" => 4 , "data-slider-step" => 1 , "data-slider-value" =>  get_value_for_input_item('input_item_12',false)  ,:input_item_id => 'input_item_12'  }
+        %span.slider-label
+          %span{:id => "slider4Value"}
+            = get_label_for_slider_input_item('input_item_12')
+      %td.no-border
+      %td.no-border
+
+  %table.table.input-screen-table.table-hover
+    %thead
+      %td.col-md-3
+        Institutional Clients Group
+      %td.col-md-4
+        US
+      %td.col-md-1.spacer
+
+      %td.col-md-4
+        International
+
+    %tr
+      %td.input-screen-label
+        Global Banking
+      %td.editable-slider.no-border{:id => 'f13' , :input_item_id => 'input_item_13'}
+        %input.slider.slider-input{"data-slider-id" => 5 , "data-slider-min" => 0, "data-slider-max" => 4 , "data-slider-step" => 1 , "data-slider-value" =>  get_value_for_input_item('input_item_13',false)  ,:input_item_id => 'input_item_13'  }
+        %span.slider-label
+          %span{:id => "slider5Value"}
+            = get_label_for_slider_input_item('input_item_13')
+      %td.no-border
+
+      %td.no-border.editable-slider{:id => 'f14' , :input_item_id => 'input_item_14'}
+        %input.slider.slider-input{"data-slider-id" => 6 , "data-slider-min" => 0, "data-slider-max" => 4 , "data-slider-step" => 1 , "data-slider-value" =>  get_value_for_input_item('input_item_14',false) ,:input_item_id => 'input_item_14'  }
+        %span.slider-label
+          %span{:id => "slider6Value"}
+            = get_label_for_slider_input_item('input_item_14')
+      %td.no-border
+      %td.no-border
+
+  %button.btn.btn-primary.save-button
+    Save Decisions
+  %button.btn.btn-secondary.reset-button
+    Reset
+    .row
+
+= render 'nav'
+
+.modal.fade{:role => "dialog", :id => 'error_modal', :tabindex => "-1"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Your Data has not Been Saved
+      .modal-body
+        %p Would you like to save your changes to decisions on this screen before leaving?
+      .modal-footer
+        %button.btn.btn-default.discard-changes-button{"data-dismiss" => "modal", :type => "button"} Discard Changes
+        %button.btn.btn-primary.save-changes-button{"data-dismiss" => "modal",:type => "button"} Save changes

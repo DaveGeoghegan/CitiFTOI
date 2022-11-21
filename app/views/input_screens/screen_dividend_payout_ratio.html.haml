@@ -1,0 +1,39 @@
+.container-fluid
+  .screen-title
+    Dividend Payout Ratio Decision Entry
+  .jumbotron.screen-instructions
+    Enter your bank's dividend payout ratio. This ratio is the percentage of your net income that you will pay to shareholders in the coming year. Increasing this ratio will push your short-term stock price up, since investors will receive higher dividends. However, increasing this ratio will also leave your bank with less capital to reinvest in your business, since more of your retained earnings will go to shareholders. This ratio must be between 0% and 100%.
+
+    When complete, click the "Save Decisions" button to save your work before continuing.
+  %table.table.input-screen-table.table-hover
+    %tr
+      %td.input-screen-label
+        Dividend Payout Ratio
+      %td.editable.required-range{:id => 'f15' , :input_item_id => 'input_item_15', 'data-range-min' => 0, 'data-range-max' => 100}
+        = get_value_for_input_item('input_item_15')
+      %td.no-border
+      %td.no-border
+      %td.no-border
+      %td.no-border
+
+
+  %button.btn.btn-primary.save-button
+    Save Decisions
+  %button.btn.btn-secondary.reset-button
+    Reset
+
+  .row
+= render 'nav'
+
+.modal.fade{:role => "dialog", :id => 'error_modal', :tabindex => "-1"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Your Data has not Been Saved
+      .modal-body
+        %p Would you like to save your changes to decisions on this screen before leaving?
+      .modal-footer
+        %button.btn.btn-default.discard-changes-button{"data-dismiss" => "modal", :type => "button"} Discard Changes
+        %button.btn.btn-primary.save-changes-button{"data-dismiss" => "modal",:type => "button"} Save changes

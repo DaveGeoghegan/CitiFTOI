@@ -1,0 +1,135 @@
+.container-fluid
+  .screen-title
+    Capital Allocation Decision Entry
+  .pull-right
+  .jumbotron.screen-instructions
+
+    Allocate your bank's capital across the business units below. The relative profitability of these business units will change as economic and market conditions change. Your goal in this simulation is to maximize your bank's overall profitability. Your total allocation must equal 100%.Please note that you are limited to changing each value by 3% up or down. When complete, click the "Save Decisions" button to save your work before continuing.
+
+  %table.table.input-screen-table.table-hover.capital-allocation
+    %thead
+      %td.col-md-5.pull-left-dave
+        Global Consumer Banking
+      %td.col-md-2
+        US
+      %td.col-md-1.spacer
+
+      %td.col-md-2
+        International
+      %td.col-md-1.spacer
+        &nbsp;
+      %td.col-md-2
+        Total
+    %tr
+      %td.input-screen-label
+        Retail Banking
+      %td.editable.restrict-change{:id => 'f1' , :input_item_id => 'input_item_1' , :previous_round_value => get_starting_value_for_input_item('input_item_1')}
+        = get_value_for_input_item('input_item_1')
+      %td.no-border
+
+      %td.editable.restrict-change{:id => 'f2', :input_item_id => 'input_item_2' ,:previous_round_value => get_starting_value_for_input_item('input_item_2')}
+        = get_value_for_input_item('input_item_2')
+      %td.no-border
+
+      %td.summary.additive-result{'data-add-fields' => 'f1,f2'}
+        20%
+    %tr
+      %td.input-screen-label
+        Cards
+      %td.editable.restrict-change{:id => 'f3' , :input_item_id => 'input_item_3', :previous_round_value => get_starting_value_for_input_item('input_item_3')}
+        = get_value_for_input_item('input_item_3')
+      %td.no-border
+
+      %td.editable.restrict-change{:id => 'f4', :input_item_id => 'input_item_4', :previous_round_value => get_starting_value_for_input_item('input_item_4')}
+        = get_value_for_input_item('input_item_4')
+      %td.no-border
+
+      %td.summary.additive-result{'data-add-fields' => 'f3,f4'}
+        20%
+    %tr
+      %td.no-border
+      %td.no-border
+      %td.no-border
+      %td.no-border
+      %td.no-border
+      %td.no-border.summary.additive-result{'data-add-fields' => 'f1,f2,f3,f4'}
+        20%
+
+  %table.table.input-screen-table.table-hover.capital-allocation
+    %thead
+      %td.col-md-5.pull-left-dave
+        Institutional Clients Group
+      %td.col-md-2
+        US
+      %td.col-md-1.spacer
+
+      %td.col-md-2
+        International
+      %td.col-md-1.spacer
+        &nbsp;
+      %td.col-md-2
+        Total
+    %tr
+      %td.input-screen-label
+        Global Banking
+      %td.editable.restrict-change{:id => 'f5' , :input_item_id => 'input_item_5',  :previous_round_value => get_starting_value_for_input_item('input_item_5')}
+        = get_value_for_input_item('input_item_5')
+      %td.no-border
+
+      %td.editable.restrict-change{:id => 'f6', :input_item_id => 'input_item_6', :previous_round_value => get_starting_value_for_input_item('input_item_6')}
+        = get_value_for_input_item('input_item_6')
+      %td.no-border
+
+      %td.summary.additive-result{'data-add-fields' => 'f5,f6'}
+        20%
+    %tr
+      %td.input-screen-label
+        Global Markets
+      %td.editable.restrict-change{:id => 'f7' , :input_item_id => 'input_item_7', :previous_round_value => get_starting_value_for_input_item('input_item_7')}
+        = get_value_for_input_item('input_item_7')
+      %td.no-border
+
+      %td.editable.restrict-change{:id => 'f8', :input_item_id => 'input_item_8', :previous_round_value => get_starting_value_for_input_item('input_item_8')}
+        = get_value_for_input_item('input_item_8')
+      %td.no-border
+
+      %td.summary.additive-result{'data-add-fields' => 'f7,f8'}
+        20%
+    %tr
+      %td.no-border
+      %td.no-border
+      %td.no-border
+      %td.no-border
+
+      %td.no-border
+      %td.no-border.summary.additive-result{'data-add-fields' => 'f5,f6,f7,f8'}
+    %tr
+      %td.input-screen-label
+        %b
+          Total
+      %td.no-border.bold-summary.summary.additive-result{'data-add-fields' => 'f1,f3,f5,f7'}
+      %td.no-border
+      %td.no-border.bold-summary.summary.additive-result{'data-add-fields' => 'f2,f4,f6,f8'}
+      %td.no-border
+      %td.no-border.bold-summary.summary.additive-result.required-value{'data-add-fields' => 'f1,f2,f3,f4,f5,f6,f7,f8' , 'data-required-value' => "100"}
+        20%
+
+  %button.btn.btn-primary.save-button
+    Save Decisions
+  %button.btn.btn-secondary.reset-button
+    Reset
+  .row
+= render 'nav'
+
+.modal.fade{:role => "dialog", :id => 'error_modal', :tabindex => "-1"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Your Data has not Been Saved
+      .modal-body
+        %p Would you like to save your changes to decisions on this screen before leaving?
+      .modal-footer
+        %button.btn.btn-default.discard-changes-button{"data-dismiss" => "modal", :type => "button"} Discard Changes
+        %button.btn.btn-primary.save-changes-button{"data-dismiss" => "modal",:type => "button"} Save changes

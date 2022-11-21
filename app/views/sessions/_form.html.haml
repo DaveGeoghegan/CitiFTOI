@@ -1,0 +1,22 @@
+.container
+  %div
+    %img{'src' => "/images/citi-logo.png" }
+    .welcome-message
+      Welcome to 
+      %i
+        Citi From the Outside In
+      simulation
+    .welcome-text
+      Please enter your team name and the password provided by the instructor.
+    .login-box.col-sm-12.col-md-10.col-md-offset-1
+      = form_tag sessions_path, class: "form-horizontal", role: "form" do
+        .form-group
+          = label_tag 'name' , 'Team name' ,  class: ' control-label-login'
+          .login-box
+            = text_field_tag :name,nil, class: 'form-control login-input-box'
+        .form-group
+          = label_tag :password,'Password', class: ' control-label-login'
+          .login-box
+            = text_field_tag :password, nil, class: 'form-control login-input-box'
+        .form-group
+          = submit_tag 'Login',  class: 'btn btn-info'

@@ -1,0 +1,17 @@
+.container-fluid
+  .row.jumbotron
+    %div
+      %img{:alt => "Citi logo", :src => "/images/citi-logo-long.png"}/
+    .col-md-9
+      .input-screen-instructions
+        Enter Decisions for
+        =  @round.name
+      .input-screen-selections
+        .list-group
+          - @round.input_screens.each do |is|
+            %a.list-group-item.input-screen-button{ 'data-input-screen-id' => is.id}
+              = is.navigation_label
+              - if is.has_decisions(@team_round)
+                %span.badge
+                  Done
+

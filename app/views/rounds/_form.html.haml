@@ -1,0 +1,34 @@
+= form_for @round, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @round.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@round.errors.count, "error")} prohibited this round from being saved:"
+
+      %ul
+        - @round.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label "Economic Data", class: 'col-sm-2 control-label'
+
+    - if f.object.economic_data?
+      = f.object.economic_data_file_name
+    .col-sm-4
+      = f.file_field :economic_data
+  .form-group
+    = f.label "Debrief", class: 'col-sm-2 control-label'
+    - if f.object.debrief?
+      = f.object.debrief_file_name
+    .col-sm-4
+      = f.file_field :debrief
+
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

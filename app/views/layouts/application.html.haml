@@ -1,0 +1,75 @@
+!!!
+%html
+  %head
+    %meta{charset: "utf-8"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
+    %meta{content: "", name: "description"}
+    %meta{content: "", name: "author"}
+    %title Citi From the Outside In
+
+    / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    /[if lt IE 9]
+      = javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js"
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+      .container
+        .navbar-header
+          %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: "#navbar"}, aria: {expanded: "false", controls: "navbar"} }
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .simulation-name
+            Citi From the Outside In
+        #navbar.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li.active
+              %a{href: "/"} Decisions
+            %li
+              %a{href: "/about.html"} About
+            %li
+              %a{href: "/help/participant_instructions.pdf" ,:target => "_blank"} Help
+            -if is_admin then
+              %li
+                %a{href: "/teams"} Teams
+              %li
+                %a{href: "/rounds"} Rounds
+            -if current_user then
+              %li.dropdown
+                %a.dropdown-toggle{ 'data-toggle' => "dropdown", href:"#"}
+                  Reports
+                  %span.caret
+                %ul.dropdown-menu
+                  %li
+                    %a.dropdown-menu-item.report-menu-item{href: current_team_round.round.economic_data.url , :target => "_blank"  }
+                      Economic Data
+                  -#%li
+                  -#  %a.dropdown-menu-item.report-menu-item{href: current_team_round.round.debrief.url , :target => "_blank"  }
+                  -#    Debrief
+                  - current_user.team_rounds.each do |tr|
+                    %li{ class:  tr.report? ? '' : 'disabled'}
+                      %a.dropdown-menu-item.report-menu-item{href: tr.report.url , :target => "_blank"  }
+                        = tr.round.name
+                        Reports
+                    %li{ class:  tr.round.debrief? ? '' : 'disabled'}
+                      %a.dropdown-menu-item.report-menu-item{href: tr.round.debrief.url , :target => "_blank"  }
+                        = tr.round.name
+                        Debrief
+            %li
+              - if current_user then
+                %a{href: "/sessions/destroy"} Log Out
+              - else
+                %a{href: "/sessions/new"} Log In
+    .container
+      - flash.each do |name, msg|
+        = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
+          %button.close{type: "button", data: {dismiss: "alert"} }
+            %span{aria: {hidden: "true"} } &times;
+            %span.sr-only Close
+          = msg
+      = yield

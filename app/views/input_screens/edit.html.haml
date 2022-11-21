@@ -1,0 +1,10 @@
+.page-header
+  = link_to input_screens_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to @input_screen, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-info-sign
+    Show
+  %h1 Editing input_screen
+
+= render 'form'

@@ -1,0 +1,21 @@
+.page-header
+  = link_to new_round_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Round
+  %h1 Round Information
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @rounds.each do |round|
+        %tr
+          %td= round.name
+          %td= link_to 'Show', round
+          %td= link_to 'Upload', edit_round_path(round)

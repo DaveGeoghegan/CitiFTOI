@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_team_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Team
+  %h1  Teams
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Password
+        %th
+        %th
+        %th
+
+    %tbody
+      - @teams.each do |team|
+        %tr
+          %td= team.name
+          %td= team.password
+          %td
+            = link_to 'Get Decisions', team
+            - if team.get_current_team_round.all_screens_have_decisions
+              %span.pull-right.badge
+                Complete
+          %td= link_to 'Upload Files', edit_team_path(team)
+          %td= link_to 'Destroy', team, data: { confirm: 'Are you sure?' }, method: :delete

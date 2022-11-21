@@ -1,0 +1,4 @@
+
+
+jQuery ->
+	recalculate_form()

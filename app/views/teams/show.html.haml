@@ -1,0 +1,31 @@
+.page-header
+  = link_to teams_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_team_path(@team), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show team
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @team.name
+  %dt Password:
+  %dd= @team.password
+
+
+%h3
+  Rounds
+%dl.dl-horizontal
+  - @team.team_rounds.each do |r|
+    %dt Name
+    %dd= r.round.name
+    %dt Is Complete
+    %dd= r.is_finished
+    %dt Report
+    %dd= r.report_file_name
+    %dt Export Data
+    %dd
+      %a{ :href => '/team/export/' + r.id.to_s}
+        Export
+    %br

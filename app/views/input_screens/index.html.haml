@@ -1,0 +1,26 @@
+.page-header
+  = link_to new_input_screen_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Input screen
+  %h1 Listing input_screens
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Navigation label
+        %th Identifier
+        %th
+        %th
+        %th
+
+    %tbody
+      - @input_screens.each do |input_screen|
+        %tr
+          %td= input_screen.name
+          %td= input_screen.navigation_label
+          %td= input_screen.identifier
+          %td= link_to 'Show', input_screen
+          %td= link_to 'Edit', edit_input_screen_path(input_screen)
+          %td= link_to 'Destroy', input_screen, data: { confirm: 'Are you sure?' }, method: :delete

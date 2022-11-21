@@ -1,0 +1,10 @@
+.form-group
+  %fieldset
+    = f.label :round_name , class: 'col-sm-2 control-label'
+    .col-sm-6
+      = f.text_field :name, class: 'form-control'
+    .col-sm-2
+      = f.hidden_field :_destroy
+      = link_to  "remove", '#', class: "remove_fields"
+  -#= render 'input_screen_fields', f:f
+  = link_to_add_fields "Add Input Screen", f, :input_screens

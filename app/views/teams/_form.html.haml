@@ -1,0 +1,54 @@
+= form_for @team, html: { :multipart => true , class: "form-horizontal", role: "form" } do |f|
+  -if @team.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@team.errors.count, "error")} prohibited this team from being saved:"
+
+      %ul
+        - @team.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :password, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :password, class: 'form-control'
+  .row
+    = f.fields_for :team_rounds do |rb|
+      .row.team-rounds-input
+        .row
+          .col-sm-6
+            = rb.object.round.name
+          .col-sm-6
+            = rb.label 'Complete?'
+            = rb.check_box :is_finished
+        .row
+          .col-sm-4
+            Report
+          .col-sm-4
+            - if rb.object.report?
+              = rb.object.report_file_name
+            -else
+              No File
+          .col-sm-4
+            = rb.file_field :report
+        -#.row
+        -#  .col-sm-4
+        -#    Debrief
+        -#  .col-sm-4
+        -#    - if rb.object.debrief?
+        -#      = rb.object.debrief_file_name
+        -#    -else
+        -#      No File
+        -#  .col-sm-4
+        -#    = rb.file_field :debrief
+
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

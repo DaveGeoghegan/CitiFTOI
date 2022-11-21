@@ -1,0 +1,14 @@
+.page-header
+  = link_to simulations_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_simulation_path(@simulation), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show simulation
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @simulation.name
+  %dt Number of rounds:
+  %dd= @simulation.number_of_rounds
